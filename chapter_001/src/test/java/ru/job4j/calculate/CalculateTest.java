@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
 *@since 05.12.2018
 *@version 0.0
 */
-public class CalculateTest{
+public class CalculateTest {
 	/** 
 	*Test echo.
 	*/
