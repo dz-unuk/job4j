@@ -8,9 +8,16 @@ package ru.job4j.calculate;
 public class Calculate {
 	/**
 	 *Конструктор.
-	 *@param args - argументы.
+	 *@param args - args.
 	 */
 	public static void main(String[] args) {
+	    int a = 3;
+	    int b = 4;
+	    int c = a > b ? a : b;
+	    int n = 123456789;
+	    float f = n;
+        System.out.println(f);
+        System.out.println(c);
 		System.out.println("Hello world!");
 	}
 
