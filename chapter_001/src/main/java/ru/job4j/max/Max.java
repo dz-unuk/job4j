@@ -9,11 +9,24 @@ package ru.job4j.max;
 public class Max {
     /**
      * Возвращает большее значение из двух переменных класса int
-     * @param firstInt Целое число
-     * @param secondInt Второе целое число
-     * @return большее из введенных
+     * @param first Целое число
+     * @param second Второе целое число
+     * @return большее из аргументов
      */
-    public int max(int firstInt, int secondInt) {
-        return firstInt > secondInt ? firstInt : secondInt;
+    public int max(int first, int second) {
+
+        return first > second ? first : second;
+    }
+    /**
+     * Возвращает большее значение из двух переменных класса int
+     * @param first Целое число
+     * @param second Второе целое число
+     * @param third Третье целое число
+     * @return большее из аргументов
+     */
+    public int max(int first, int second, int third) {
+        int temp = this.max(first, second);
+        temp = this.max(temp, third);
+        return temp;
     }
 }

@@ -11,4 +11,10 @@ public class MaxTest {
         int result = maxim.max(1, 2);
         assertThat(result, is(2));
     }
+    @Test
+    public void whenOneAndSixAndFour() {
+        Max maxim = new Max();
+        int result = maxim.max(1, 6, 4);
+        assertThat(result, is(6));
+    }
 }
