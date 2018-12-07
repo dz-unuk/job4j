@@ -11,12 +11,7 @@ public class Calculate {
 	 *@param args - args.
 	 */
 	public static void main(String[] args) {
-	    int a = 3;
-	    int b = 4;
-	    int c = a > b ? a : b;
 
-        System.out.println(f);
-        System.out.println(c);
 		System.out.println("Hello world!");
 	}
 
