@@ -8,7 +8,10 @@ package ru.job4j.loop;
  */
 public class Board {
     /**
-     *
+     *Рисуем "шахматную доску" с заданными высотой и шириной
+     * @param width - ширина "доски"
+     * @param height - высота "доски"
+     * @return String с переносами строк - шахматная доска
      */
     public String paint(int width, int height) {
         StringBuilder screen = new StringBuilder();
@@ -22,4 +25,9 @@ public class Board {
         }
         return screen.toString();
     }
+
+    /*public static void main(String[] args) {
+        Board board = new Board();
+        System.out.println(board.paint(5, 4));
+    }*/
 }
