@@ -1,5 +1,6 @@
 package ru.job4j.array;
 
+import static org.hamcrest.collection.IsArrayContainingInAnyOrder.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,7 +14,7 @@ public class ArrayDuplicateTest {
         String[] inputs = {"Привет", "Мир", "Привет", "Супер", "Мир"};
         String[] expected = {"Привет", "Мир", "Супер"};
         String[] result = array.remove(inputs);
-        assertThat(result, is(expected));
+        assertThat(result, arrayContainingInAnyOrder(expected));
     }
     @Test
     public void whenRemoveDuplicatesThenArrayWithoutDuplicate2() {
