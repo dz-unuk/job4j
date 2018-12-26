@@ -71,21 +71,23 @@ public class Logic {
         boolean result = false;
         int dimension = table.length;
         //System.out.println(dimension);
-        int [] horiz = new int[dimension];
-        int [] vert = new int[dimension];
-        for (int iterH = 0; iterH < dimension; iterH++)
-            for (int iterV = 0; iterV < dimension; iterV++)
-                if (table[iterV][iterH] == 1){
-                    horiz[iterH]++;
-                    vert[iterV]++;
-                }
-
-        for (int i = 0; i < dimension; i++){
-            if (horiz[i] == dimension || vert[i] == dimension){
-                result = true;
-                break;
+        int counter = 0;
+        int row = -1;
+        int column = -1;
+        for (int iter = 0; iter < dimension; iter++) {
+            if (table[0][iter] == 1) {
+                counter++;
+                column = iter;
+            }
+            if (table[iter][0] == 1 && iter != 0) {
+                counter++;
+                row = iter;
             }
         }
+        if (counter == 1 && column != 0){
+            for (int i = 1; i < dimension; i++) counter += row > 0 ? table[row][i] : table[i][column];
+        }
+        if (counter == 5) result = true;
         return result;
     }
 
