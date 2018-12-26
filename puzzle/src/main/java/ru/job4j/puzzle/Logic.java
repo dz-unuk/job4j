@@ -70,24 +70,32 @@ public class Logic {
         int[][] table = this.convert();
         boolean result = false;
         int dimension = table.length;
-        //System.out.println(dimension);
+        //счетчик обнаруженных фишек
         int counter = 0;
+
+        //предполагаемое положение ряда или столбец с фишками
         int row = -1;
         int column = -1;
+
+        //поиск производим только в нулевом ряду и столбце
+        //присваивая предполагаемый ряд и столбец сможем дальше провести проверку в нем и...
+        //исключаем неверное решение со всеми фишками, расположенными и в нулевом столбце, и в нулевой строке
         for (int iter = 0; iter < dimension; iter++) {
             if (table[0][iter] == 1) {
                 counter++;
-                column = iter;
+                if (iter != 0) column = iter;//на первом шаге проверка не нужна, только мешает
             }
             if (table[iter][0] == 1 && iter != 0) {
                 counter++;
                 row = iter;
             }
         }
-        if (counter == 1 && column != 0){
+        //поиск фишек в этом столбце/строке
+        if (counter == 1){
             for (int i = 1; i < dimension; i++) counter += row > 0 ? table[row][i] : table[i][column];
         }
-        if (counter == 5) result = true;
+        //окончательная проверка, что нашли все 5, но они либо все в строке, либо все в столбце
+        if (counter == 5 && (row == -1 || column == -1)) result = true;
         return result;
     }
 
