@@ -14,7 +14,6 @@ public class Max {
      * @return большее из аргументов
      */
     public int max(int first, int second) {
-
         return first > second ? first : second;
     }
     /**

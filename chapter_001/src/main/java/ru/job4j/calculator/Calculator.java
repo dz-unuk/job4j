@@ -15,7 +15,6 @@ public class Calculator {
     public void multiply(double first, double second) {
         this.result = first * second;
     }
-
     public double getResult() {
         return this.result;
     }

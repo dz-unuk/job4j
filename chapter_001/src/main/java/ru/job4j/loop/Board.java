@@ -20,14 +20,8 @@ public class Board {
             for (int j = 0; j < width; j++) {
                 screen.append(((i + j) % 2 == 0) ? "X" : " ");
             }
-            // добавляем перевод на новую строку.
             screen.append(ln);
         }
         return screen.toString();
     }
-
-    /*public static void main(String[] args) {
-        Board board = new Board();
-        System.out.println(board.paint(5, 4));
-    }*/
 }

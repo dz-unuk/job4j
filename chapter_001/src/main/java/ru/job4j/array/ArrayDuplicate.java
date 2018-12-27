@@ -1,7 +1,6 @@
 package ru.job4j.array;
 
 import java.util.Arrays;
-
 /**
  * @author Denis
  * @since 12.12.18
