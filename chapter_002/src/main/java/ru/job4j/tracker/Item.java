@@ -6,7 +6,7 @@ public class Item {
     private String description;
     private long create;
 
-    public Item() {}
+    public Item() { }
 
     public Item(String name, String description, long create) {
         this.name = name;
@@ -25,7 +25,7 @@ public class Item {
     public String getId() {
         return this.id;
     }
-    public void setId(String id){
+    public void setId(String id) {
         this.id = id;
     }
 }

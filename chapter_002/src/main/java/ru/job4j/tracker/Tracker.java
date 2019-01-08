@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 //import static java.lang.System.currentTimeMillis;
 import java.util.*;
+import java.util.Arrays;
 
 /**
  * @version $Id$
@@ -38,8 +39,8 @@ public class Tracker {
      */
     public boolean replace(String id, Item item) {
         boolean result = false;
-        for (int i = 0; i < this.position; i++){
-            if (this.items[i] != null && this.items[i].getId().equals(id)){
+        for (int i = 0; i < this.position; i++) {
+            if (this.items[i] != null && this.items[i].getId().equals(id)) {
                 this.items[i] = item;
                 result = true;
                 break;
@@ -52,11 +53,13 @@ public class Tracker {
      * @param id - элемента для удаления
      * @return удалось ли удалить элемент
      */
-    public boolean delete(String id){
+    public boolean delete(String id) {
         boolean result = false;
         for (int i = 0; i < this.position; i++) {
             if (this.items[i] != null && this.items[i].getId().equals(id)) {
-                if (i != this.position-1) System.arraycopy(this.items, i+1, this.items, i, this.position-1-i);
+                if (i != this.position - 1) {
+                    System.arraycopy(this.items, i + 1, this.items, i, this.position - 1 - i);
+                }
                 this.items[--position] = null;
                 result = true;
             }
@@ -67,9 +70,9 @@ public class Tracker {
      * Возвращает массив с не null элементами
      * @return Item[] - без null Item
      */
-    public Item[] findAll(){
+    public Item[] findAll() {
         Item[] result = new Item[position];
-        for (int index = 0; index < position; index++){
+        for (int index = 0; index < position; index++) {
             result[index] = this.items[index];
         }
         return result;
@@ -79,20 +82,15 @@ public class Tracker {
      * @param name - имя
      * @return массив
      */
-    public Item[] findByName(String name){
+    public Item[] findByName(String name) {
         int iter = 0;
+        Item[] buffer = new Item[this.position];
         for (Item item : items) {
             if (item != null && item.getName().equals(name)) {
-                iter++;
+                buffer[iter++] = item;
             }
         }
-        Item[] result = new Item[iter];
-        iter = 0;
-        for (Item item : items) {
-            if (item != null && item.getName().equals(name)) {
-                result[iter++] = item;
-            }
-        }
+        Item[] result = Arrays.copyOf(buffer, iter);
         return result;
     }
     /**
@@ -100,7 +98,7 @@ public class Tracker {
      * @param id - id
      * @return Item с данным id
      */
-    protected Item findById(String id){
+    protected Item findById(String id) {
         Item result = null;
         for (Item item : items) {
             if (item != null && item.getId().equals(id)) {
