@@ -85,9 +85,8 @@ public class StartUI {
             System.out.println("------------ Заявок с таким именем пока нет -----------");
         } else {
             System.out.println("------------ Заявки с таким именем: --------------");
-            for (int i=0; i < items.length; i++) {
-                System.out.println(String.valueOf(i+1) + ") " + items[i].getName() + " -- "
-                        + items[i].getCreate() + " -- " +  items[i].getDescription());
+            for (int i = 0; i < items.length; i++) {
+                System.out.println((i + 1) + ") " + items[i].toString());
             }
         }
     }
@@ -146,9 +145,8 @@ public class StartUI {
             System.out.println("------------ Заявок пока нет -----------");
         } else {
             System.out.println("------------ Заполненные заявки: --------------");
-            for (int i=0; i < list.length; i++) {
-                System.out.println(String.valueOf(i+1) + ") " + list[i].getName() + " -- "
-                        + list[i].getCreate() + " -- " +  list[i].getDescription());
+            for (int i = 0; i < list.length; i++) {
+                System.out.println((i + 1) + ") " + list[i].toString());
             }
         }
     }
