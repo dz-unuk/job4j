@@ -182,6 +182,7 @@ public class StartUI {
      */
     public static void main(String[] args) {
         Input input = new ConsoleInput();
+//        Input input = new StubInput();
         new StartUI(input, new Tracker()).init();
     }
 }
