@@ -78,7 +78,7 @@ public class StartUI {
      * Ищем заявки по имени
      */
     private void findName() {
-        System.out.println("------------ Ищем заявку по id--------------");
+        System.out.println("------------ Ищем заявку по Имени--------------");
         String name = this.input.ask("Введите имя заявки :");
         Item[] items = this.tracker.findByName(name);
         if (items.length == 0) {
