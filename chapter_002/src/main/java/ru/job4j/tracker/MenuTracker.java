@@ -60,4 +60,15 @@ public class MenuTracker {
             }
         }
     }
+    /**
+     * Метод возвращает массив ключей существующих действий
+     */
+    public int[] keys() {
+        int[] arr = new int[this.actions.size()];
+        int index = 0;
+        for (UserAction action : this.actions) {
+            arr[index++] = action.key();
+        }
+        return arr;
+    }
 }

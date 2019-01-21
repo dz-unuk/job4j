@@ -4,10 +4,6 @@ import java.util.*;
 
 public class StartUI {
 
-    /**
-     * Константа для нахождения заявки по Имени.
-     */
-    private static final String FINDNAME = "5";
 
     /**
      * Получение данных от пользователя.
@@ -40,7 +36,7 @@ public class StartUI {
         }
         do {
             menu.show();
-            menu.select(Integer.parseInt(input.ask("select:")));
+            menu.select(input.ask("select:", menu.keys()));
         } while (!"y".equals(this.input.ask("Exit?(y): ")));
     }
 
@@ -49,7 +45,7 @@ public class StartUI {
      * @param args - нет
      */
     public static void main(String[] args) {
-        Input input = new ConsoleInput();
+        Input input = new ValidInput();
 //        Input input = new StubInput();
         new StartUI(input, new Tracker()).init();
     }
