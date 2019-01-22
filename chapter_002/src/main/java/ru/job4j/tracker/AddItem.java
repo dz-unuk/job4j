@@ -2,15 +2,15 @@ package ru.job4j.tracker;
 
 public class AddItem implements UserAction {
     private final String info;
-    private final int add;
+    private final int key;
 
     AddItem(int key, String info) {
-        this.add = key;
+        this.key = key;
         this.info = info;
     }
     @Override
     public int key() {
-        return this.add;
+        return this.key;
     }
     @Override
     public void execute(Input input, Tracker tracker) {
@@ -26,6 +26,6 @@ public class AddItem implements UserAction {
     }
     @Override
     public String info() {
-        return String.format("%s) %s.", Long.toString(this.add), this.info);
+        return String.format("%s) %s.", Long.toString(this.key), this.info);
     }
 }

@@ -51,7 +51,7 @@ public class MenuTracker {
     /**
      * Метод выводит на экран меню.
      */
-    public void show() {
+    public void showMenu() {
         System.out.println("Menu.");
         System.out.println("-----------------");
         for (UserAction action : this.actions) {

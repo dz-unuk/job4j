@@ -45,7 +45,7 @@ public class ValidateInputTest {
     @Test
     public void whenValidInput() {
         ValidInput input = new ValidInput(
-                new StubInput(new String[] {"2"})
+                new StubInput(new String[] {"6"})
         );
         input.ask("Enter", new int[] {1});
         assertThat(
