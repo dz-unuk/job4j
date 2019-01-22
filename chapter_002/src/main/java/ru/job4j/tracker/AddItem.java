@@ -1,0 +1,19 @@
+package ru.job4j.tracker;
+
+public class AddItem extends BaseAction {
+    AddItem(int key, String name) {
+        super(key, name);
+    }
+    @Override
+    public void execute(Input input, Tracker tracker) {
+        System.out.println("------------ Adding new item --------------");
+        String name = input.ask("Please, provide item name:");
+        String desc = input.ask("Please, provide item description:");
+        long create = 150119L;
+        Item item = new Item(name, desc, create);
+        tracker.add(item);
+        System.out.println("------------ New Item with Id : " + item.getId());
+        System.out.println("------------ New Item with Name : " + item.getName());
+        System.out.println("------------ New Item with Description : " + item.getDescription());
+    }
+}

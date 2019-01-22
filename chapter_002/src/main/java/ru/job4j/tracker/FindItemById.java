@@ -1,17 +1,8 @@
 package ru.job4j.tracker;
 
-public class FindItemById implements UserAction {
-    private final int findId;
-    private final String info;
-
-    FindItemById(int key, String info) {
-        this.findId = key;
-        this.info = info;
-    }
-
-    @Override
-    public int key() {
-        return this.findId;
+public class FindItemById extends BaseAction {
+    FindItemById(int key, String name) {
+        super(key, name);
     }
 
     @Override
@@ -25,10 +16,5 @@ public class FindItemById implements UserAction {
             System.out.println("------------ Вот она: --------------");
             System.out.println(item.toString());
         }
-    }
-
-    @Override
-    public String info() {
-        return String.format("%s) %s.", Long.toString(this.findId), this.info);
     }
 }

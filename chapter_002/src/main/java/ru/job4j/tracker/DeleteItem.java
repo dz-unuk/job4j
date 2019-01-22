@@ -1,17 +1,8 @@
 package ru.job4j.tracker;
 
-public class DeleteItem implements UserAction {
-    private final int delete;
-    private final String info;
-
-    DeleteItem(int key, String info) {
-        this.delete = key;
-        this.info = info;
-    }
-
-    @Override
-    public int key() {
-        return this.delete;
+public class DeleteItem extends BaseAction {
+    DeleteItem(int key, String name) {
+        super(key, name);
     }
 
     @Override
@@ -24,10 +15,5 @@ public class DeleteItem implements UserAction {
         } else {
             System.out.println("------------ Заявки с таким ID не существует -----------");
         }
-    }
-
-    @Override
-    public String info() {
-        return String.format("%s) %s.", Long.toString(this.delete), this.info);
     }
 }

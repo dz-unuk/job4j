@@ -1,17 +1,8 @@
 package ru.job4j.tracker;
 
-public class UpdateItem implements UserAction {
-    private final int replace;
-    private final String info;
-
-    UpdateItem(int key, String info) {
-        this.replace = key;
-        this.info = info;
-    }
-
-    @Override
-    public int key() {
-        return this.replace;
+public class UpdateItem extends BaseAction {
+    UpdateItem(int key, String name) {
+        super(key, name);
     }
 
     @Override
@@ -28,10 +19,5 @@ public class UpdateItem implements UserAction {
         } else {
             System.out.println("------------ Заявки с таким ID не существует -----------");
         }
-    }
-
-    @Override
-    public String info() {
-        return String.format("%s) %s.", Long.toString(this.replace), this.info);
     }
 }

@@ -1,18 +1,9 @@
 package ru.job4j.tracker;
 
-public class ShowItems implements UserAction {
-    private final String info;
-    private final int all;
-
-    ShowItems(int key, String info) {
-        this.all = key;
-        this.info = info;
+public class ShowItems extends BaseAction {
+    ShowItems(int key, String name) {
+        super(key, name);
     }
-    @Override
-    public int key() {
-        return all;
-    }
-
     @Override
     public void execute(Input input, Tracker tracker) {
         Item[] list = tracker.findAll();
@@ -24,10 +15,5 @@ public class ShowItems implements UserAction {
                 System.out.println((i + 1) + ") " + list[i].toString());
             }
         }
-    }
-
-    @Override
-    public String info() {
-        return String.format("%s) %s.", Long.toString(this.all), this.info);
     }
 }
