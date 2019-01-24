@@ -32,14 +32,13 @@ public class BishopBlack implements Figure {
         }
         int xDelta = xDist / Math.abs(xDist);
         int yDelta = yDist / Math.abs(yDist);
-        int length = Math.abs(xDist) - 1;
+        int length = Math.abs(xDist);
         Cell[] steps = new Cell[length];
-        System.out.println(dest);
 
         for (int index = 0; index < length; index++) {
             for (Cell cell : Cell.values()) {
-                if ((cell.x == dest.x - (index + 1) * (xDelta))
-                        && cell.y == dest.y - (index + 1) * (yDelta)) {
+                if ((cell.x == dest.x - index * xDelta)
+                        && cell.y == dest.y - index * yDelta) {
                     steps[index] = cell;
                 }
             }
