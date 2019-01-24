@@ -2,6 +2,7 @@ package ru.job4j.chess;
 
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
+import ru.job4j.chess.figures.ImpossibleMoveException;
 
 /**
  * //TODO add comments.
@@ -22,10 +23,14 @@ public class Logic {
         boolean rst = false;
         int index = this.findBy(source);
         if (index != -1) {
-            Cell[] steps = this.figures[index].way(source, dest);
-            if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
-                rst = true;
-                this.figures[index] = this.figures[index].copy(dest);
+            try {
+                Cell[] steps = this.figures[index].way(source, dest);
+                if (steps.length > 0 && steps[0].equals(dest)) {
+                    rst = true;
+                    this.figures[index] = this.figures[index].copy(dest);
+                }
+            } catch (ImpossibleMoveException ime) {
+                System.out.println("переходите!");
             }
         }
         return rst;
