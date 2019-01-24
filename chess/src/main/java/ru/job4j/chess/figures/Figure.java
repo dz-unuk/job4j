@@ -1,4 +1,4 @@
-package ru.job4j.chess.firuges;
+package ru.job4j.chess.figures;
 
 public interface Figure {
     Cell position();
@@ -13,5 +13,4 @@ public interface Figure {
     }
 
     Figure copy(Cell dest);
-
 }
