@@ -1,4 +1,4 @@
-package ru.job4j.chess.firuges.black;
+package ru.job4j.chess.firuges.white;
 
 import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.Figure;
@@ -9,10 +9,10 @@ import ru.job4j.chess.firuges.Figure;
  * @version $Id$
  * @since 0.1
  */
-public class QeenBlack implements Figure {
+public class QueenWhite implements Figure {
     private final Cell position;
 
-    public QeenBlack(final Cell position) {
+    public QueenWhite(final Cell position) {
         this.position = position;
     }
 
@@ -23,11 +23,11 @@ public class QeenBlack implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) {
-        return new Cell[] { dest };
+        return new Cell[] {dest};
     }
 
     @Override
     public Figure copy(Cell dest) {
-        return new QeenBlack(dest);
+        return new QueenWhite(dest);
     }
 }
