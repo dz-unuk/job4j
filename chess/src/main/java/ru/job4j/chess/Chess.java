@@ -21,6 +21,7 @@ public class Chess extends Application {
     private static final String JOB4J = "Шахматы на www.job4j.ru";
     private final int size = 8;
     private final Logic logic = new Logic();
+    private final Board board = new Board();
 
     private Rectangle buildRectangle(int x, int y, int size, boolean white) {
         Rectangle rect = new Rectangle();
@@ -60,7 +61,7 @@ public class Chess extends Application {
         );
         rect.setOnMouseReleased(
                 event -> {
-                    if (logic.move(this.findBy(momento.getX(), momento.getY()), this.findBy(event.getX(), event.getY()))) {
+                    if (board.move(this.findBy(momento.getX(), momento.getY()), this.findBy(event.getX(), event.getY()))) {
                         rect.setX(((int) event.getX() / 40) * 40 + 5);
                         rect.setY(((int) event.getY() / 40) * 40 + 5);
                     } else {
@@ -107,7 +108,7 @@ public class Chess extends Application {
 
     private void refresh(final BorderPane border) {
         Group grid = this.buildGrid();
-        this.logic.clean();
+        this.board.clean();
         border.setCenter(grid);
         this.buildWhiteTeam(grid);
         this.buildBlackTeam(grid);
@@ -152,7 +153,7 @@ public class Chess extends Application {
     }
 
     public void add(Figure figure, Group grid) {
-        this.logic.add(figure);
+        this.board.add(figure);
         Cell position = figure.position();
         grid.getChildren().add(
                 this.buildFigure(
