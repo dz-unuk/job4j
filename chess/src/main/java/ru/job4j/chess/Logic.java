@@ -19,18 +19,19 @@ public class Logic {
         this.figures[this.index++] = figure;
     }
 
-    public boolean move(Cell source, Cell dest) throws FigureNotFoundException {
+    public boolean move(Cell source, Cell dest) throws FigureNotFoundException, ImpossibleMoveException {
         boolean rst = false;
         int index = this.findBy(source);
         if (index == -1) {
             throw new FigureNotFoundException("здесь нет фигуры");
         }
+        Cell[] steps = this.figures[index].way(source, dest);
+        if (steps.length > 0 && steps[0].equals(dest)) {
+            rst = true;
+            this.figures[index] = this.figures[index].copy(dest);
+        }
         try {
-            Cell[] steps = this.figures[index].way(source, dest);
-            if (steps.length > 0 && steps[0].equals(dest)) {
-                rst = true;
-                this.figures[index] = this.figures[index].copy(dest);
-            }
+
         } catch (ImpossibleMoveException ime) {
             System.out.println(ime);
         }

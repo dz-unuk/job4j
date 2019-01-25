@@ -14,6 +14,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
+import ru.job4j.chess.figures.ImpossibleMoveException;
 import ru.job4j.chess.figures.black.*;
 import ru.job4j.chess.figures.white.*;
 
@@ -68,7 +69,7 @@ public class Chess extends Application {
                             rect.setX(((int) momento.getX() / 40) * 40 + 5);
                             rect.setY(((int) momento.getY() / 40) * 40 + 5);
                         }
-                    } catch (FigureNotFoundException e) {
+                    } catch (FigureNotFoundException | ImpossibleMoveException e) {
                         rect.setX(((int) momento.getX() / 40) * 40 + 5);
                         rect.setY(((int) momento.getY() / 40) * 40 + 5);
                         System.out.println(e);
