@@ -74,7 +74,6 @@ public class Chess extends Application {
                         rect.setY(((int) momento.getY() / 40) * 40 + 5);
                         System.out.println(e);
                     }
-
                 }
         );
         return rect;
