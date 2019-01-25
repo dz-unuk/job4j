@@ -30,7 +30,7 @@ public class Logic {
                     this.figures[index] = this.figures[index].copy(dest);
                 }
             } catch (ImpossibleMoveException ime) {
-                System.out.println("переходите!");
+                System.out.println(ime);
             }
         }
         return rst;
