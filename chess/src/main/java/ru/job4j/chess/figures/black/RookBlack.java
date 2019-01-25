@@ -23,7 +23,7 @@ public class RookBlack implements Figure {
     }
 
     @Override
-    public Cell[] way(Cell source, Cell dest) {
+    public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException{
         int xDist = dest.x - source.x;
         int yDist = dest.y - source.y;
         if ((xDist != 0 & yDist != 0) || (xDist == 0 & yDist == 0)) {

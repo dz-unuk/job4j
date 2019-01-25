@@ -2,9 +2,9 @@ package ru.job4j.chess.figures.white;
 
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
+import ru.job4j.chess.figures.ImpossibleMoveException;
 
 /**
- * //TODO add comments.
  *
  * @author Petr Arsentev (parsentev@yandex.ru)
  * @version $Id$
@@ -24,6 +24,9 @@ public class PawnWhite implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) {
+        if (source.y != dest.y - 1 || source.x != dest.x) {
+            throw new ImpossibleMoveException("пешки так не ходят");
+        }
         return new Cell[] {dest};
     }
 

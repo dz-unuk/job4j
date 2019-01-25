@@ -26,8 +26,6 @@ public class KnightBlack implements Figure {
     public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
         int xDist = Math.abs(dest.x - source.x);
         int yDist = Math.abs(dest.y - source.y);
-        System.out.println(xDist);
-        System.out.println(yDist);
         if (!((xDist == 1 & yDist == 2) || (xDist == 2 & yDist == 1))) {
             throw new ImpossibleMoveException("Конь так не ходит!");
         }

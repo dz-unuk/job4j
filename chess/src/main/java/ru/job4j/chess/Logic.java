@@ -5,7 +5,6 @@ import ru.job4j.chess.figures.Figure;
 import ru.job4j.chess.figures.ImpossibleMoveException;
 
 /**
- * //TODO add comments.
  *
  * @author Petr Arsentev (parsentev@yandex.ru)
  * @version $Id$
@@ -21,7 +20,7 @@ public class Logic {
 
     public boolean move(Cell source, Cell dest)
             throws FigureNotFoundException, ImpossibleMoveException, OccupiedWayException {
-        boolean rst = false;
+//        boolean rst = false;
         int index = this.findBy(source);
         if (index == -1) {
             throw new FigureNotFoundException("здесь нет фигуры");
@@ -33,9 +32,9 @@ public class Logic {
             }
         }
 //        if (steps.length > 0 && steps[0].equals(dest)) {}
-        rst = true;
+//        rst = true;
         this.figures[index] = this.figures[index].copy(dest);
-        return rst;
+        return true;
     }
 
     public void clean() {
