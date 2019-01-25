@@ -24,11 +24,9 @@ public class PawnBlack implements Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) throws ImpossibleMoveException {
-//        Cell[] steps = new Cell[0];
         if (source.y != dest.y + 1 || source.x != dest.x) {
             throw new ImpossibleMoveException("пешки так не ходят");
         }
-//        steps = new Cell[] {dest};
         return new Cell[] {dest};
     }
 
