@@ -34,13 +34,11 @@ public class RookWhite implements Figure {
         int length = Math.abs(xDist + yDist);
 
         Cell[] steps = new Cell[length];
+        Cell[] board = Cell.values();
+
         for (int index = 0; index < length; index++) {
-            for (Cell cell : Cell.values()) {
-                if ((cell.x == dest.x - index * xDelta)
-                        && cell.y == dest.y - index * yDelta) {
-                    steps[index] = cell;
-                }
-            }
+            steps[index] = board[8 * dest.x + dest.y
+                    - 8 * xDelta * index - yDelta * index];
         }
         return steps;
     }

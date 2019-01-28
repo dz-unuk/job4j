@@ -34,10 +34,10 @@ public class BishopBlack implements Figure {
         int yDelta = yDist / Math.abs(yDist);
         int length = Math.abs(xDist);
         Cell[] steps = new Cell[length];
-        Cell[] cell1 = Cell.values();
+        Cell[] board = Cell.values();
 
         for (int index = 0; index < length; index++) {
-            steps[index] = cell1[8 * dest.x + dest.y
+            steps[index] = board[8 * dest.x + dest.y
                     - 8 * xDelta * index - yDelta * index];
         }
         return steps;

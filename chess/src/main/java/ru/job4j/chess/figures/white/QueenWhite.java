@@ -34,14 +34,11 @@ public class QueenWhite implements Figure {
         int yDelta = yDist != 0 ? yDist / Math.abs(yDist) : 0;
         int length = Math.max(Math.abs(xDist), Math.abs(yDist));
         Cell[] steps = new Cell[length];
+        Cell[] board = Cell.values();
 
         for (int index = 0; index < length; index++) {
-            for (Cell cell : Cell.values()) {
-                if ((cell.x == dest.x - index * xDelta)
-                        && cell.y == dest.y - index * yDelta) {
-                    steps[index] = cell;
-                }
-            }
+            steps[index] = board[8 * dest.x + dest.y
+                    - 8 * xDelta * index - yDelta * index];
         }
         return steps;
     }
