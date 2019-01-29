@@ -4,7 +4,6 @@ import ru.job4j.puzzle.firuges.Cell;
 import ru.job4j.puzzle.firuges.Figure;
 
 /**
- * //TODO add comments.
  *
  * @author Petr Arsentev (parsentev@yandex.ru)
  * @version $Id$

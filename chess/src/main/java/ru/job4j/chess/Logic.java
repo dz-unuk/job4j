@@ -2,9 +2,9 @@ package ru.job4j.chess;
 
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
+import ru.job4j.chess.figures.ImpossibleMoveException;
 
 /**
- * //TODO add comments.
  *
  * @author Petr Arsentev (parsentev@yandex.ru)
  * @version $Id$
@@ -18,17 +18,20 @@ public class Logic {
         this.figures[this.index++] = figure;
     }
 
-    public boolean move(Cell source, Cell dest) {
-        boolean rst = false;
+    public boolean move(Cell source, Cell dest)
+            throws FigureNotFoundException, ImpossibleMoveException, OccupiedWayException {
         int index = this.findBy(source);
-        if (index != -1) {
-            Cell[] steps = this.figures[index].way(source, dest);
-            if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
-                rst = true;
-                this.figures[index] = this.figures[index].copy(dest);
+        if (index == -1) {
+            throw new FigureNotFoundException("здесь нет фигуры");
+        }
+        Cell[] steps = this.figures[index].way(source, dest);
+        for (Cell step : steps) {
+            if (findBy(step) != -1) {
+                throw new OccupiedWayException("путь занят!");
             }
         }
-        return rst;
+        this.figures[index] = this.figures[index].copy(dest);
+        return true;
     }
 
     public void clean() {
