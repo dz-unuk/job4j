@@ -5,11 +5,10 @@ public class SortUser {
     /**
      * будет возвращать TreeSet пользователей,
      * отсортированных по возрасту в порядке возрастания
-     * @return
+     * @return TreeSet пользователей
      */
     public static Set<User1> sort(List<User1> list) {
-        TreeSet<User1> result = new TreeSet<>();
-        result.addAll(list);
-        return result;
+
+        return new TreeSet<>(list);
     }
 }
