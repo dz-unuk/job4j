@@ -11,7 +11,7 @@ public class TrackerTest {
         Tracker tracker = new Tracker();
         Item item = new Item("test1", "testDescription", 123L);
         tracker.add(item);
-        assertThat(tracker.findAll()[0], is(item));
+        assertThat(tracker.findAll().get(0), is(item));
     }
     @Test
     public void whenReplaceNameThenReturnNewName() {
@@ -39,7 +39,7 @@ public class TrackerTest {
         // Добавляем ее тоже в трекер.
         tracker.add(next);
         // Проверяем, что заявка с именем "test2" имеет description "testDescription2".
-        assertThat(tracker.findByName("test2")[0].getDescription(), is("testDescription2"));
+        assertThat(tracker.findByName("test2").get(0).getDescription(), is("testDescription2"));
     }
     @Test
     public void whenDeleteItemThenReturnOneElement() {
@@ -54,6 +54,6 @@ public class TrackerTest {
         //Удаляем заявку test1
         tracker.delete(previous.getId());
         // Проверяем, что заявка с таким id не существует
-        assertThat(tracker.findByName("test2").length, is(1));
+        assertThat(tracker.findByName("test2").size(), is(1));
     }
 }

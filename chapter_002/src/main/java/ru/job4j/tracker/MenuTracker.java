@@ -66,11 +66,11 @@ public class MenuTracker {
     /**
      * Метод возвращает массив ключей существующих действий
      */
-    public int[] keys() {
-        int[] arr = new int[this.actions.size()];
+    public ArrayList<Integer> keys() {
+        ArrayList<Integer> arr = new ArrayList<>();
         int index = 0;
         for (UserAction action : this.actions) {
-            arr[index++] = action.key();
+            arr.add(action.key());
         }
         return arr;
     }

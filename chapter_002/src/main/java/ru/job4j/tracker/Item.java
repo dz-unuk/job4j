@@ -1,6 +1,25 @@
 package ru.job4j.tracker;
 
+import java.util.Objects;
+
 public class Item {
+
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Item item = (Item) o;
+        return getId().equals(item.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getDescription(), getCreate());
+    }
+
     private String id;
     private String name;
     private String description;

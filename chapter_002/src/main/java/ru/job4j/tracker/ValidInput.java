@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.*;
+
 public class ValidInput implements Input {
     private final Input input;
 
@@ -11,7 +13,7 @@ public class ValidInput implements Input {
         return this.input.ask(question);
     }
 
-    public int ask(String question, int[] range) {
+    public int ask(String question, List<Integer> range) {
         boolean valid = false;
         int key = -1;
         do {
