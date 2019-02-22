@@ -1,6 +1,6 @@
 package ru.job4j.tracker;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ShowItems extends BaseAction {
     ShowItems(int key, String name) {
@@ -8,7 +8,7 @@ public class ShowItems extends BaseAction {
     }
     @Override
     public void execute(Input input, Tracker tracker) {
-        ArrayList<Item> list = tracker.findAll();
+        List<Item> list = tracker.findAll();
         if (list.size() == 0) {
             System.out.println("------------ Заявок пока нет -----------");
         } else {

@@ -1,8 +1,6 @@
 package ru.job4j.tracker;
 
-//import static java.lang.System.currentTimeMillis;
 import java.util.*;
-import java.util.Arrays;
 
 /**
  * @version $Id$
@@ -12,11 +10,11 @@ public class Tracker {
     /**
      * Массив для хранение заявок.
      */
-    private final ArrayList<Item> items = new ArrayList<>();
+    private final List<Item> items = new ArrayList<>();
     /**
      * Указатель ячейки для новой заявки.
      */
-    private int position = 0;
+//    private int position = 0;
     /**
      * Рандомный объект для генерации id
      */
@@ -28,7 +26,7 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items.add(this.position++, item);
+        this.items.add(item.copyOf());
         return item;
     }
     /**
@@ -38,10 +36,14 @@ public class Tracker {
      * @return - удалось ли совершить замену
      */
     public boolean replace(String id, Item item) {
+        boolean result = false;
         item.setId(id);
-        boolean result = items.indexOf(item) != -1;
-        if (result) {
-            items.set(items.indexOf(item), item);
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getId() == id) {
+                items.set(i, item.copyOf());
+                result = true;
+                break;
+            }
         }
         return result;
     }
@@ -51,25 +53,24 @@ public class Tracker {
      * @return удалось ли удалить элемент
      */
     public boolean delete(String id) {
-        Item item = new Item("", "", 0);
-        item.setId(id);
-        boolean result = items.remove(item);
-        return result;
+        Item item = findById(id);
+        return items.remove(item);
     }
     /**
      * Возвращает массив с не null элементами
      * @return Item[] - без null Item
      */
-    public ArrayList<Item> findAll() {
-        return this.items;
+    public List<Item> findAll() {
+        List<Item> result = new ArrayList<>(this.items);
+        return result;
     }
     /**
      * Возвращает все элементы в виде массива, у которых имя совпадает с аргументом
      * @param name - имя
      * @return массив
      */
-    public ArrayList<Item> findByName(String name) {
-        ArrayList<Item> buffer = new ArrayList<>();
+    public List<Item> findByName(String name) {
+        List<Item> buffer = new ArrayList<>();
         for (Item item : items) {
             if (item.getName().equals(name)) {
                 buffer.add(item);
@@ -83,10 +84,13 @@ public class Tracker {
      * @return Item с данным id
      */
     protected Item findById(String id) {
-        Item item = new Item("", "", 0);
-        item.setId(id);
-        boolean contain = items.indexOf(item) != -1;
-        Item result = contain ? items.get(items.indexOf(item)) : null;
+        Item result = null;
+        for (Item item : this.items) {
+            if (item.getId() == id) {
+                result = item;
+                break;
+            }
+        }
         return result;
     }
     /**

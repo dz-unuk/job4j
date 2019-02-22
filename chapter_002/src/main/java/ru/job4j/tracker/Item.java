@@ -4,21 +4,6 @@ import java.util.Objects;
 
 public class Item {
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Item item = (Item) o;
-        return getCreate() == item.getCreate() &&
-                getId().equals(item.getId()) &&
-                getName().equals(item.getName()) &&
-                getDescription().equals(item.getDescription());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getName(), getDescription(), getCreate());
-    }
 
     private String id;
     private String name;
@@ -31,6 +16,32 @@ public class Item {
         this.name = name;
         this.description = description;
         this.create = create;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Item item = (Item) o;
+        return getCreate() == item.getCreate()
+                && getId().equals(item.getId())
+                && getName().equals(item.getName())
+                && getDescription().equals(item.getDescription());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getDescription(), getCreate());
+    }
+
+    public Item copyOf() {
+        Item item = new Item(this.name, this.description, this.create);
+        item.setId(this.id);
+        return item;
     }
     public String getName() {
         return this.name;
