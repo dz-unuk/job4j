@@ -15,12 +15,22 @@ public class StringsCompare implements Comparator<String> {
      * Integer.compare(int left, int right),
      * Character.compare(char left, char right);
      *
-     * @param left
-     * @param right
-     * @return
+     * @param left первая строка
+     * @param right вторая строка
+     * @return отрицательное, если левое меньше правого; положительное, если наоборот; ноль, если равны
      */
     @Override
     public int compare(String left, String right) {
-        return 0;
+        int result = 0;
+        int characters = Math.min(right.length(), left.length());
+        int iter = 0;
+        while (result == 0 && iter < characters) {
+            result = Character.compare(left.charAt(iter), right.charAt(iter));
+            iter++;
+        }
+        if (result == 0) {
+            result = left.length() - right.length();
+        }
+        return result;
     }
 }
