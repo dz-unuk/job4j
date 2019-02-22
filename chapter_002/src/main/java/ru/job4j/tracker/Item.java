@@ -4,15 +4,15 @@ import java.util.Objects;
 
 public class Item {
 
+    @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Item item = (Item) o;
-        return getId().equals(item.getId());
+        return getCreate() == item.getCreate() &&
+                getId().equals(item.getId()) &&
+                getName().equals(item.getName()) &&
+                getDescription().equals(item.getDescription());
     }
 
     @Override
