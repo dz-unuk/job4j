@@ -11,15 +11,13 @@ public class SortUserTest {
 
     @Test
     public void sortTest() {
-        List<User1> input = new ArrayList<>();
-        input.add(new User1("Jan", 40));
-        input.add(new User1("Tom", 30));
-        input.add(new User1("Bob", 35));
-        Set<User1> expected = new TreeSet<>();
-        expected.add(new User1("Tom", 30));
-        expected.add(new User1("Bob", 35));
-        expected.add(new User1("Jan", 40));
-        assertThat(SortUser.sort(input), is(expected));
+        User1 user1 = new User1("Jan", 40);
+        User1 user2 = new User1("Tom", 30);
+        User1 user3 = new User1("Bob", 35);
+        List<User1> input = new ArrayList<>(Arrays.asList(user1, user2, user3));
+        List<User1> expected = new ArrayList<>(Arrays.asList(user2, user3, user1));
 
+        List<User1> result = new ArrayList<>(SortUser.sort(input));
+        assertThat(result, is(expected));
     }
 }

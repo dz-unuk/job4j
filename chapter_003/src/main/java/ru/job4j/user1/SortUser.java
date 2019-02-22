@@ -8,7 +8,6 @@ public class SortUser {
      * @return TreeSet пользователей
      */
     public static Set<User1> sort(List<User1> list) {
-
         return new TreeSet<>(list);
     }
 }
