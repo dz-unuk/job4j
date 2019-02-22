@@ -83,7 +83,9 @@ public class Logic {
             if (table[0][iter] == 1) {
                 counter++;
                 //на первом шаге не нужно отмечать, т.к. мы и так проверяем в цикле нулевые строку и столбец
-                if (iter != 0) column = iter;
+                if (iter != 0) {
+                    column = iter;
+                }
             }
             //позицию [0][0] повторно не проверяем
             if (table[iter][0] == 1 && iter != 0) {
@@ -92,11 +94,15 @@ public class Logic {
             }
         }
         //если найдена только одна фишка, то поиск фишек в этом столбце/строке
-        if (counter == 1){
-            for (int i = 1; i < dimension; i++) counter += row > 0 ? table[row][i] : table[i][column];
+        if (counter == 1) {
+            for (int i = 1; i < dimension; i++) {
+                counter += row > 0 ? table[row][i] : table[i][column];
+            }
         }
         //окончательная проверка, что нашли все 5, и они все в одной строке/столбце
-        if (counter == 5 && (row == -1 || column == -1)) result = true;
+        if (counter == 5 && (row == -1 || column == -1)) {
+            result = true;
+        }
         return result;
     }
 
