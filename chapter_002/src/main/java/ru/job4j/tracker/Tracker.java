@@ -54,6 +54,7 @@ public class Tracker {
      */
     public boolean delete(String id) {
         Item item = findById(id);
+//        items.remove(0);
         return items.remove(item);
     }
     /**
