@@ -3,36 +3,36 @@ package ru.job4j.control;
 
 public class Account {
 
-    double values;
-    String reqs;
+    private double value;
+    private String requisites;
 
     public Account(double values, String requisites) {
-        this.values = values;
-        this.reqs = requisites;
+        this.value = values;
+        this.requisites = requisites;
     }
 
     public double getValues() {
-        return this.values;
+        return this.value;
     }
 
 
     public String getReqs () {
-        return this.reqs;
+        return this.requisites;
     }
 
     boolean transfer(Account destination, double amount) {
         boolean success = false;
-        if (amount > 0 && amount < this.values && destination != null) {
+        if (amount > 0 && amount < this.value && destination != null) {
             success = true;
-            this.values -= amount;
-            destination.values += amount;
+            this.value -= amount;
+            destination.value += amount;
         }
         return success;
     }
 
     public String toString() {
         String otvet;
-        otvet = "Account{" + "values=" + values + ", reqs='" + reqs + "\\" + "}";
+        otvet = "Account{" + "values=" + value + ", reqs='" + requisites + "\\" + "}";
         return otvet;
     }
 
@@ -46,10 +46,10 @@ public class Account {
 
         Account account = (Account) o;
 
-        return this.reqs.equals(account.reqs);
+        return this.requisites.equals(account.requisites);
     }
 
     public int hashCode() {
-        return this.reqs.hashCode();
+        return this.requisites.hashCode();
     }
 }
