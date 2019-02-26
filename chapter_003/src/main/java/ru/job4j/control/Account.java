@@ -1,6 +1,9 @@
 package ru.job4j.control;
 
-
+/**
+ * Класс банковского счета пользователя.
+ * Содержит стандартные методы и метод перевода суммы.
+ */
 public class Account {
 
     private double value;
@@ -10,46 +13,30 @@ public class Account {
         this.value = values;
         this.requisites = requisites;
     }
-
-    public double getValues() {
-        return this.value;
-    }
-
-
-    public String getReqs () {
+    public String getReqs() {
         return this.requisites;
     }
-
+    /**
+     * Метод осуществляет перевод указанной суммы с текущего счета
+     * на счет, переданный в параметрах
+     * @param destination счет-получатель
+     * @param amount сумма перевода
+     * @return успех
+     */
     boolean transfer(Account destination, double amount) {
         boolean success = false;
-        if (amount > 0 && amount < this.value && destination != null) {
+        if (amount > 0 && amount <= this.value && destination != null) {
             success = true;
             this.value -= amount;
             destination.value += amount;
         }
         return success;
     }
-
+    @Override
     public String toString() {
-        String otvet;
-        otvet = "Account{" + "values=" + value + ", reqs='" + requisites + "\\" + "}";
-        return otvet;
-    }
-
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Account account = (Account) o;
-
-        return this.requisites.equals(account.requisites);
-    }
-
-    public int hashCode() {
-        return this.requisites.hashCode();
+        return "Account{"
+                + "value=" + value
+                + ", requisites='" + requisites + '\''
+                + '}';
     }
 }

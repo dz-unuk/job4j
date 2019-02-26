@@ -47,10 +47,12 @@ public class Bank {
     }
     /**
      * Закрытый метод для получения списка счетов пользователя, который задается по паспорту.
+     * Сделал метод закрытым, т.к. он используется как вспомогательный в классе
+     * и передает ссылку на закрытые поля класса
      * @param passport номер паспорта
-     * @return список счетов пользователя
+     * @return список всех счетов пользователя
      */
-    private List<Account> getUserAccounts (String passport) {
+    private List<Account> getUserAccounts(String passport) {
         List<Account> accounts = null;
         for (Map.Entry<User, List<Account>> e : this.userMap.entrySet()) {
             if (e.getKey().getPassport().equals(passport)) {
@@ -60,29 +62,46 @@ public class Bank {
         return accounts;
     }
     /**
-     *
-     * @param passport
-     * @param requisites
-     * @return
+     * Закрытый метод. Возвращает заданный счет заданного пользователя. Счет задается
+     * по полю requisites, а пользователь по паспорту.
+     * @param passport номер паспорта
+     * @param requisites реквизиты счета
+     * @return заданный счет заданного пользователя
      */
     private Account getActualAccount(String passport, String requisites) {
         List<Account> list = getUserAccounts(passport);
         Account account = null;
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getReqs() == requisites) {
+            if (requisites.equals(list.get(i).getReqs())) {
                 account = list.get(i);
             }
         }
         return account;
     }
-    public boolean transferMoney (String srcPassport, String srcRequisite,
+    /**
+     * Открытый метод перевода заданной суммы с заданного счета на другой заданный счет.
+     * Счета могут совпадать.
+     * @param srcPassport паспорт пользователя счета, у которого снимаются деньги
+     * @param srcRequisite реквизиты счета, с которого снимаются деньги
+     * @param destPassport паспорт получателя денег
+     * @param dstRequisite счет-получатель
+     * @param amount сумма перевода
+     * @return прошла ли операция.
+     */
+    public boolean transferMoney(String srcPassport, String srcRequisite,
                                   String destPassport, String dstRequisite, double amount) {
         Account srcAccount = getActualAccount(srcPassport, srcRequisite);
         Account dstAccount = getActualAccount(destPassport, dstRequisite);
         return (srcAccount != null) && (dstAccount != null)
                 && srcAccount.transfer(dstAccount, amount);
     }
+    public String getUserAccToStr(String passport) {
+        return getUserAccounts(passport).toString();
+    }
+    @Override
     public String toString() {
-        return "Bank{" + "accounts=" + userMap + "}";
+        return "Bank{"
+                + "userMap=" + userMap
+                + '}';
     }
 }
