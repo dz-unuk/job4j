@@ -53,9 +53,15 @@ public class Tracker {
      * @return удалось ли удалить элемент
      */
     public boolean delete(String id) {
-        Item item = findById(id);
-//        items.remove(0);
-        return items.remove(item);
+        boolean result = false;
+        for (int i = 0; i < this.items.size(); i++) {
+            if (items.get(i).getId().equals(id)) {
+                items.remove(i);
+                result = true;
+                break;
+            }
+        }
+        return result;
     }
     /**
      * Возвращает массив с не null элементами
