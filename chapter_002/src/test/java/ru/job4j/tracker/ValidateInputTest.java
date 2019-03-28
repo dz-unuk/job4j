@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
+import java.util.function.Consumer;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -17,27 +18,25 @@ import static org.hamcrest.Matchers.is;
  * @since 0.1
  */
 public class ValidateInputTest {
-    private final ByteArrayOutputStream mem = new ByteArrayOutputStream();
-    private final PrintStream out = System.out;
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    private final Consumer<String> output = new Consumer<String>() {
+        private final PrintStream stdout = new PrintStream(out);
 
-    @Before
-    public void loadMem() {
-        System.setOut(new PrintStream(this.mem));
-    }
-
-    @After
-    public void loadSys() {
-        System.setOut(this.out);
-    }
+        @Override
+        public void accept(String s) {
+            stdout.println(s);
+        }
+    };
 
     @Test
     public void whenInvalidInput() {
         ValidInput input = new ValidInput(
-                new StubInput(new String[] {"i", "1"})
+                new StubInput(new String[] {"i", "1"}),
+                output
         );
         input.ask("Enter", Arrays.asList(1));
         assertThat(
-                this.mem.toString(),
+                this.out.toString(),
                 is(
                         String.format("Put a number, please!%n")
                 )
@@ -46,11 +45,12 @@ public class ValidateInputTest {
     @Test
     public void whenValidInput() {
         ValidInput input = new ValidInput(
-                new StubInput(new String[] {"6"})
+                new StubInput(new String[] {"6"}),
+                output
         );
         input.ask("Enter", Arrays.asList(1));
         assertThat(
-                this.mem.toString(),
+                this.out.toString(),
                 is(
                         String.format("")
                 )

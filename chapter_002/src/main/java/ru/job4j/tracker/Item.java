@@ -59,7 +59,7 @@ public class Item {
         this.id = id;
     }
     public String toString() {
-        return this.name + " -- " + this.create + " -- " +  this.description;
-        //        return this.id + " -- " + this.name + " -- " + this.create + " -- " +  this.description;
+        return "Name:" + this.name + ", description:" +  this.description;
+//        return "Name:" + this.name + ", description:" +  this.description + ", ID:" +  this.id;
     }
 }
