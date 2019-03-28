@@ -1,12 +1,15 @@
 package ru.job4j.tracker;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 public class ValidInput implements Input {
     private final Input input;
+    private final Consumer<String> output;
 
-    public ValidInput(final Input input) {
+    public ValidInput(final Input input, final Consumer<String> output) {
         this.input = input;
+        this.output = output;
     }
     @Override
     public String ask(String question) {
@@ -22,9 +25,9 @@ public class ValidInput implements Input {
                 valid = true;
             } catch (MenuOutException moe) {
 //                moe.printStackTrace();
-                System.out.println("Select number from a menu range");
+                output.accept("Select number from a menu range");
             } catch (NumberFormatException nfe) {
-                System.out.println("Put a number, please!");
+                output.accept("Put a number, please!");
             }
         } while (!valid);
         return key;

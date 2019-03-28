@@ -12,6 +12,6 @@ public abstract class BaseAction implements UserAction {
         return this.key;
     }
     public String info() {
-        return String.format("%s) %s.", Long.toString(this.key), this.name);
+        return String.format("%s) %s.", Integer.toString(this.key), this.name);
     }
 }
