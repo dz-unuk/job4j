@@ -18,6 +18,8 @@ import ru.job4j.chess.figures.ImpossibleMoveException;
 import ru.job4j.chess.figures.black.*;
 import ru.job4j.chess.figures.white.*;
 
+import java.util.Arrays;
+
 public class Chess extends Application {
     private static final String JOB4J = "Шахматы на www.job4j.ru";
     private final int size = 8;
@@ -172,15 +174,10 @@ public class Chess extends Application {
     }
 
     private Cell findBy(double graphX, double graphY) {
-        Cell rst = Cell.A1;
         int x = (int) graphX / 40;
         int y = (int) graphY / 40;
-        for (Cell cell : Cell.values()) {
-            if (cell.x == x && cell.y == y) {
-                rst = cell;
-                break;
-            }
-        }
-        return rst;
+        return Arrays.stream(Cell.values())
+                .filter(cell -> cell.x == x && cell.y == y)
+                .reduce((cell, cell2) -> cell).orElse(Cell.A1);
     }
 }
